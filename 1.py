@@ -1,19 +1,20 @@
-def perevod_chisla_v_sitemu_schislenia(sistema_schislenia, chislo):
-    proverka_na_otricatelnye_chisla = False
-    if chislo < 0:
-        proverka_na_otricatelnye_chisla = True
-        chislo *= -1
-    otvet = ""
-    while chislo > 0:
-        otvet = str(chislo % sistema_schislenia) + otvet
-        chislo //= sistema_schislenia
-    if proverka_na_otricatelnye_chisla:
-        print("-" + otvet)
+def to_8_or_2(base, number):
+    under_zero = False
+    if number < 0:
+        under_zero = True
+        number *= -1
+    answer = ""
+    while number > 0:
+        answer = str(number % base) + answer
+        number //= base
+    if under_zero:
+        return "-" + answer
     else:
-        print(otvet)
-chislo_vvedennoe_polzovatelem = int(input("Введите число: "))
-sistema_schislenia = int(input("Введите целевую систему счисления: "))
-while sistema_schislenia != 2 and sistema_schislenia !=8:
+        return answer
+number = int(input("Введите число: "))
+base = int(input("Введите целевую систему счисления: "))
+while base != 2 and base !=8:
     print("Выберите двоичную или восьмиричную систему счисления")
-    sistema_schislenia = int(input("Введите целевую систему счисления: "))
-perevod_chisla_v_sitemu_schislenia(sistema_schislenia, chislo_vvedennoe_polzovatelem)
+    base = int(input("Введите целевую систему счисления: "))
+answer = to_8_or_2(base, number)
+print(number, "->", answer)
